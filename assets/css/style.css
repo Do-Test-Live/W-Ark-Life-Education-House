@@ -1,0 +1,25 @@
+.ark-logo{
+    max-width: 150px;
+}
+
+.ark-bg{
+    width: 100%;
+}
+
+.ark-form{
+    background: url("../images/bg/section1_bg.jpg") no-repeat center;
+    background-size: cover;
+}
+
+.ark-footer{
+    background: #0d6fb8;
+    padding: 1rem 0 .25rem 0;
+}
+
+.ark-footer p{
+    color: white;
+}
+
+.form-check-label {
+    margin-bottom: 0;
+}

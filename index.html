@@ -5,17 +5,155 @@
     <meta content="width=device-width, initial-scale=1" name="viewport">
 
     <title>方舟生命教育館 | Ark Life Education House</title>
-    <link rel="shortcut icon" href="assets/images/logo/favicon.ico" type="image/vnd.microsoft.icon" />
+    <link rel="shortcut icon" href="assets/images/logo/favicon.ico" type="image/vnd.microsoft.icon"/>
 
+    <!-- CSS Start -->
     <link href="assets/vendor/Bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="assets/vendor/FontAwesome/css/all.min.css" rel="stylesheet"/>
-	<link href="assets/vendor/Bootstrap/font/bootstrap-icons.min.css" rel="stylesheet"/>
-	<link href="assets/vendor/uikit/css/uikit.min.css" rel="stylesheet"/>
+    <link href="assets/vendor/Bootstrap/font/bootstrap-icons.min.css" rel="stylesheet"/>
+    <link href="assets/vendor/uikit/css/uikit.min.css" rel="stylesheet"/>
     <link href="assets/css/style.css" rel="stylesheet"/>
 </head>
 <body>
+<!-- Header Start -->
+<header>
+    <div class="container text-center mb-4">
+        <img src="assets/images/logo/logo.png" class="img-fluid ark-logo" alt=""/>
+    </div>
+</header>
+<!-- Header End -->
 
+<!-- Form Start -->
+<img src="assets/images/bg/visual_bottom_bg.png" class="img-fluid ark-bg" alt=""/>
+<section class="ark-form">
+    <div class="container">
+        <form action="" method="post">
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <h2 class="text-center">報價單</h2>
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="organization" class="form-label">機構名稱 <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="organization" placeholder="">
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="name" class="form-label">聯絡人姓名 <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="name" placeholder="">
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="telephone" class="form-label">電話 <span class="text-danger">*</span></label>
+                    <input type="tel" class="form-control" id="telephone" placeholder="">
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                    <input type="email" class="form-control" id="email" placeholder="">
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="fax" class="form-label">傳真</label>
+                    <input type="tel" class="form-control" id="fax" placeholder="">
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="event_date" class="form-label">活動日期 <span class="text-danger">*</span></label>
+                    <input type="date" class="form-control" id="event_date" placeholder="">
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="object" class="form-label">對象 <span class="text-danger">*</span></label>
+                    <select class="form-select" id="object">
+                        <option selected>Dropdown</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="age" class="form-label">參加者年齡 <span class="text-danger">*</span></label>
+                    <select class="form-select" id="age">
+                        <option selected>Dropdown</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="activity" class="form-label">活動名稱 <span class="text-danger">*</span></label>
+                    <select class="form-select" id="activity">
+                        <option selected>Dropdown</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="language" class="form-label">導賞語言 <span class="text-danger">*</span></label>
+                    <select class="form-select" id="language">
+                        <option selected>Dropdown</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="participants" class="form-label">參加者數目 <span class="text-danger">*</span></label>
+                    <input type="number" class="form-control" id="participants" placeholder="">
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="staff" class="form-label">參加者方工作人員數量 <span class="text-danger">*</span></label>
+                    <input type="number" class="form-control" id="staff" placeholder="">
+                </div>
+                <div class="col-6 mb-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="lunch">
+                        <label class="form-check-label" for="lunch">
+                            是否需要午餐
+                        </label>
+                    </div>
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="food" class="form-label">導賞語言 <span class="text-danger">*</span></label>
+                    <select class="form-select" id="food">
+                        <option selected>Dropdown</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="amount" class="form-label">需要午餐的數量 <span class="text-danger">*</span></label>
+                    <input type="number" class="form-control" id="amount" placeholder="">
+                </div>
+                <div class="col-6 mb-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="tickets">
+                        <label class="form-check-label" for="tickets">
+                            是否需要馬灣的門票
+                        </label>
+                    </div>
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="number_of_tickets" class="form-label">需要門票的數量 <span class="text-danger">*</span></label>
+                    <input type="number" class="form-control" id="number_of_tickets" placeholder="">
+                </div>
+                <div class="col-12 mb-3">
+                    <button type="button" class="btn btn-dark ps-5 pe-5">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<!-- Form End -->
 
+<!-- Footer Start -->
+<footer class="ark-footer">
+    <div class="container text-center">
+        <p>
+            Copyright ©<span id="currentYear">2024</span> St James'
+            Settlement Ark Life Education House. All rights reserved | By: ctd
+        </p>
+    </div>
+</footer>
+<!-- Footer End -->
+
+<!-- JS Start -->
 <script src="assets/vendor/Bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="assets/vendor/jQuery/jquery-3.6.4.min.js"></script>
 <script src="assets/vendor/OwlCarousel/js/owl.carousel.min.js"></script>
