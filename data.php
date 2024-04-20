@@ -13,6 +13,26 @@
     <link href="assets/vendor/Bootstrap/font/bootstrap-icons.min.css" rel="stylesheet"/>
     <link href="assets/vendor/uikit/css/uikit.min.css" rel="stylesheet"/>
     <link href="assets/css/style.css" rel="stylesheet"/>
+
+    <?php
+    $organization = $name = $telephone = $email = $fax = $event_date = $object = $age = $activity = $language = $participants = $staff = $lunch = $food = $amount = $tickets = $number_of_tickets = '';
+    if (isset($_POST['dataSubmit'])) {
+        $organization = $_POST['organization'];
+        $name = $_POST['name'];
+        $telephone = $_POST['telephone'];
+        $email = $_POST['email'];
+        $fax = $_POST['fax'];
+        $event_date = $_POST['event_date'];
+        $object = $_POST['object'];
+        $age = $_POST['age'];
+        $activity = $_POST['activity'];
+        $language = $_POST['language'];
+        $participants = $_POST['participants'];
+        $staff = $_POST['staff'];
+        $lunch = $_POST['lunch'];
+        $food = $_POST['food'];
+    }
+    ?>
 </head>
 <body>
 <section id="submit-pdf">
@@ -29,25 +49,22 @@
             </div>
         </div>
         <div class="row mt-4">
-            <div class="col-lg-3">
+            <div class="col-lg-6 col-6">
                 <p>
-                    致︰<br/>
-                    聯絡人︰<br/>
-                    電話︰<br/>
-                    傳真︰<br/>
-                    電郵︰<br/>
+                    致︰ <?php echo $organization; ?><br/>
+                    聯絡人︰ <?php echo $name; ?><br/>
+                    電話︰ <?php echo $telephone; ?><br/>
+                    傳真︰ <?php echo $fax; ?><br/>
+                    電郵︰ <?php echo $email; ?><br/>
                     <br/>
-                    活動日期︰<br/>
-                    對象︰
+                    活動日期︰ <?php echo $event_date; ?><br/>
+                    對象︰ <?php echo $object; ?>
                 </p>
             </div>
-            <div class="col-lg-6">
-
-            </div>
-            <div class="col-lg-3 d-flex justify-content-end align-items-end">
+            <div class="col-lg-6 col-6 d-flex justify-content-end align-items-end">
                 <p>
-                    報價單編號︰<br/>
-                    報價單日期︰<br/>
+                    報價單編號︰ <?php echo '00001'; ?><br/>
+                    報價單日期︰ <?php echo date('d-m-Y'); ?><br/>
                     製單員︰ Kasey So<br/>
                     電話︰ 34118666<br/>
                     電郵︰ cy.so@sjs.org.hk<br/>
@@ -68,21 +85,10 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td colspan="2">Larry the Bird</td>
-                            <td>@twitter</td>
+                            <th scope="row">Test</th>
+                            <td>Test Content</td>
+                            <td>100 HKD</td>
+                            <td>100 HKD</td>
                         </tr>
                         </tbody>
                     </table>
@@ -127,8 +133,8 @@
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-12 text-center">
-                <button type="button" class="btn btn-dark ps-5 pe-5" onclick="getPDF()">Print PDF</button>
+            <div class="col-12 text-center mb-4">
+                <button type="button" class="btn btn-dark ps-5 pe-5" onclick="getPDF()">Download PDF</button>
             </div>
         </div>
     </div>
@@ -148,7 +154,7 @@
 
     function getPDF() {
         let currentDateTime = new Date();
-        let customName =  "test-ARK-Data-";
+        let customName = "<?php echo $name; ?>-ARK-Data-";
 
         let year = currentDateTime.getFullYear();
         let month = currentDateTime.getMonth() + 1;
