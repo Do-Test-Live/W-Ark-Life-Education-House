@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+
+    <title>方舟生命教育館 | Ark Life Education House</title>
+    <link rel="shortcut icon" href="assets/images/logo/favicon.ico" type="image/vnd.microsoft.icon"/>
+
+    <!-- CSS Start -->
+    <link href="assets/vendor/Bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="assets/vendor/FontAwesome/css/all.min.css" rel="stylesheet"/>
+    <link href="assets/vendor/Bootstrap/font/bootstrap-icons.min.css" rel="stylesheet"/>
+    <link href="assets/vendor/uikit/css/uikit.min.css" rel="stylesheet"/>
+    <link href="assets/css/style.css" rel="stylesheet"/>
+</head>
+<body>
+<!-- Header Start -->
+<header>
+    <div class="container text-center mb-4 mt-3">
+        <img src="assets/images/logo/logo.png" class="img-fluid ark-logo" alt=""/>
+    </div>
+</header>
+<!-- Header End -->
+
+<!-- Form Start -->
+<img src="assets/images/bg/visual_bottom_bg.png" class="img-fluid ark-bg" alt=""/>
+<section class="ark-form">
+    <div class="container pb-4">
+        <form action="" method="post">
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <h2 class="text-center">報價單</h2>
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="organization" class="form-label">機構名稱 <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="organization" name="organization" placeholder="" required>
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="name" class="form-label">聯絡人姓名 <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="" required>
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="telephone" class="form-label">電話 <span class="text-danger">*</span></label>
+                    <input type="tel" class="form-control" id="telephone" name="telephone" placeholder="" required>
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="fax" class="form-label">傳真(Optional)</label>
+                    <input type="tel" class="form-control" id="fax" name="fax" placeholder="">
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="" required>
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="event_date" class="form-label">活動日期 <span class="text-danger">*</span></label>
+                    <input type="date" class="form-control" id="event_date" name="event_date" placeholder="" required>
+                </div>
+                <div class="col-6 mb-3 d-flex align-items-end">
+                    <div class="form-check" style="padding-left: unset">
+                        <label class="form-check-label" for="restrictedAreaPaper">
+                            是否需要申請禁區紙
+                        </label>
+                        <input class="form-check-input" type="checkbox" value="" id="restrictedAreaPaper" style="float: unset;margin-left: unset" required>
+                    </div>
+                </div>
+                <div class="col-6 mb-3">
+                    <label class="form-label" for="time">活動開始時間 <span class="text-danger">*</span></label>
+                    <input type="time" class="form-control" name="time" id="time" placeholder="" required>
+                </div>
+                <div class="col-6" style="line-height: 40px;">
+                    <div class="row text-center">
+                        <div class="col-lg-3 mb-3">
+                            <br/>
+                            對象<br/>
+                            人數
+                        </div>
+                        <div class="col-lg-3 mb-3">
+                            幼稚園/親子<br/>
+                            <input class="form-check-input" name="kinderGardenChild" type="checkbox" value="" style="float: unset;margin-left: unset"><br/>
+                            <input type="text" class="form-control" placeholder="" name="numofSubKin" required>
+                        </div>
+                        <div class="col-lg-3 mb-3">
+                            小學生<br/>
+                            <input class="form-check-input" type="checkbox" name="primarySchoolStudent" value="" style="float: unset;margin-left: unset"><br/>
+                            <input type="text" class="form-control" placeholder="" name="numofSubPrimary" required>
+                        </div>
+                        <div class="col-lg-3 mb-3">
+                            中學生<br/>
+                            <input class="form-check-input" type="checkbox" value="" name="middleSchoolStudent" style="float: unset;margin-left: unset"><br/>
+                            <input type="text" class="form-control" placeholder="" name="numofSubMiddle" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6" style="line-height: 40px;">
+                    <div class="row text-center">
+                        <div class="col-lg-3 mb-3">
+                            大專生/大學生<br/>
+                            <input class="form-check-input" type="checkbox" value="" name="collegeStudents" style="float: unset;margin-left: unset"><br/>
+                            <input type="text" class="form-control" placeholder="" name="collegeStudentSub" required>
+                        </div>
+                        <div class="col-lg-3 mb-3">
+                            成人(64歲或以下)<br/>
+                            <input class="form-check-input" type="checkbox" value="" name="adult" style="float: unset;margin-left: unset"><br/>
+                            <input type="text" class="form-control" placeholder="" name="adultSub" required>
+                        </div>
+                        <div class="col-lg-3 mb-3">
+                            長者(65歲或以上)<br/>
+                            <input class="form-check-input" type="checkbox" value="" name="elderly" style="float: unset;margin-left: unset"><br/>
+                            <input type="text" class="form-control" placeholder="" name="elderSub" required>
+                        </div>
+                        <div class="col-lg-3 mb-3">
+                            殘疾人士<br/>
+                            <input class="form-check-input" type="checkbox" value="" name="disabledPerson" style="float: unset;margin-left: unset"><br/>
+                            <input type="text" class="form-control" placeholder="" name="disabledPersonSub" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="name" class="form-label">參加者方工作人員數量 <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" placeholder="" name="numOfStaff" required>
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="name" class="form-label">活動選擇 <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" name="activitySelection" placeholder="" required>
+                </div>
+                <div class="col-6 mb-3 d-flex align-items-end">
+                    <div class="form-check" style="padding-left: unset">
+                        <label class="form-check-label" for="needMeals">
+                            是否需要膳食
+                        </label>
+                        <input class="form-check-input" type="checkbox" value="" name="needMeals" id="needMeals" style="float: unset;margin-left: unset">
+                    </div>
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="name" class="form-label">語言 <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" placeholder="" name="language" required>
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="name" class="form-label">膳食選擇 <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" placeholder="" name="mealOptions" required>
+                </div>
+                <div class="col-6 mb-3 d-flex align-items-end">
+                    <div class="form-check" style="padding-left: unset">
+                        <label class="form-check-label" for="ticketsMawan">
+                            是否需要馬灣的門票
+                        </label>
+                        <input class="form-check-input" type="checkbox" value="" name="ticketsMawan" id="ticketsMawan" style="float: unset;margin-left: unset">
+                    </div>
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="numOfMeals" class="form-label">需要膳食的數量 <span class="text-danger">*</span></label>
+                    <input type="number" class="form-control" placeholder="" name="numOfMeals" id="numOfMeals" required>
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="numOfTickets" class="form-label">需要門票的數量 <span class="text-danger">*</span></label>
+                    <input type="number" class="form-control" name="numOfTickets" id="numOfTickets" placeholder="" required>
+                </div>
+                <div class="col-12 mb-3 text-center">
+                    <button type="submit" class="btn btn-dark ps-5 pe-5" name="dataSubmit">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<!-- Form End -->
+
+<!-- Footer Start -->
+<footer class="ark-footer">
+    <div class="container text-center">
+        <p>
+            Copyright ©<span id="currentYear">2024</span> St James'
+            Settlement Ark Life Education House. All rights reserved | By: ctd
+        </p>
+    </div>
+</footer>
+<!-- Footer End -->
+
+<!-- JS Start -->
+<script src="assets/vendor/Bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/jQuery/jquery-3.6.4.min.js"></script>
+<script src="assets/vendor/OwlCarousel/js/owl.carousel.min.js"></script>
+<script src="assets/vendor/uikit/js/uikit.min.js"></script>
+<script src="assets/vendor/uikit/js/uikit-icons.min.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
