@@ -15,22 +15,44 @@
     <link href="assets/css/style.css" rel="stylesheet"/>
 
     <?php
-    $organization = $name = $telephone = $email = $fax = $event_date = $object = $age = $activity = $language = $participants = $staff = $lunch = $food = $amount = $tickets = $number_of_tickets = '';
+    $organization = $name = $telephone = $email = $fax = $event_date  = $restrictedAreaPaper = $eventtime  =
+    $kinderGardenChild = $numofSubKin = $primarySchoolStudent =  $numofSubPrimary = $middleSchoolStudent =
+    $numofSubMiddle =  $collegeStudents =  $collegeStudentSub = $adult = $adultSub = $elderly = $disabledPerson =
+    $disabledPersonSub = $numOfStaff = $activitySelection = $needMeals =  $language = $mealOptions = $ticketsMawan =
+    $numOfMeals = $numOfTickets = $object = '';
+
     if (isset($_POST['dataSubmit'])) {
         $organization = $_POST['organization'];
         $name = $_POST['name'];
         $telephone = $_POST['telephone'];
-        $email = $_POST['email'];
         $fax = $_POST['fax'];
+        $email = $_POST['email'];
         $event_date = $_POST['event_date'];
-        $object = $_POST['object'];
-        $age = $_POST['age'];
-        $activity = $_POST['activity'];
+        $object = implode(", ", $_POST['object']);
+        $restrictedAreaPaper = $_POST['restrictedAreaPaper'];
+        $eventtime = $_POST['eventtime'];
+        $kinderGardenChild = $_POST['kinderGardenChild'];
+        $numofSubKin = $_POST['numofSubKin'];
+        $primarySchoolStudent = $_POST['primarySchoolStudent'];
+        $numofSubPrimary = $_POST['numofSubPrimary'];
+        $middleSchoolStudent = $_POST['middleSchoolStudent'];
+        $numofSubMiddle = $_POST['numofSubMiddle'];
+        $collegeStudents = $_POST['collegeStudents'];
+        $collegeStudentSub = $_POST['collegeStudentSub'];
+        $adult = $_POST['adult'];
+        $adultSub = $_POST['adultSub'];
+        $elderly = $_POST['elderly'];
+        $elderSub = $_POST['elderSub'];
+        $disabledPerson = $_POST['disabledPerson'];
+        $disabledPersonSub = $_POST['disabledPersonSub'];
+        $numOfStaff = $_POST['numOfStaff'];
+        $activitySelection = $_POST['activitySelection'];
+        $needMeals = $_POST['needMeals'];
         $language = $_POST['language'];
-        $participants = $_POST['participants'];
-        $staff = $_POST['staff'];
-        $lunch = $_POST['lunch'];
-        $food = $_POST['food'];
+        $mealOptions = $_POST['mealOptions'];
+        $ticketsMawan = $_POST['ticketsMawan'];
+        $numOfMeals = $_POST['numOfMeals'];
+        $numOfTickets = $_POST['numOfTickets'];
     }
     ?>
 </head>
@@ -44,7 +66,7 @@
             <div class="col-10 text-center d-flex justify-content-center align-items-center">
                 <h4 class="fw-bolder">
                     聖雅各福群會 方舟生命教育館<br/>
-                    報價單
+                    <span class="text-decoration-underline">報價單</span>
                 </h4>
             </div>
         </div>
@@ -57,14 +79,14 @@
                     傳真︰ <?php echo $fax; ?><br/>
                     電郵︰ <?php echo $email; ?><br/>
                     <br/>
-                    活動日期︰ <?php echo $event_date; ?><br/>
-                    對象︰ <?php echo $object; ?>
+                    活動日期︰ <?php echo date('d/m/Y',strtotime($event_date)); ?><br/>
+                    對象︰<?php echo $object; ?>
                 </p>
             </div>
             <div class="col-lg-6 col-6 d-flex justify-content-end align-items-end">
                 <p>
-                    報價單編號︰ <?php echo '00001'; ?><br/>
-                    報價單日期︰ <?php echo date('d-m-Y'); ?><br/>
+                    報價單編號︰ <?php echo rand(1000, 9999); ?><br/>
+                    報價單日期︰ <?php echo date('d/m/Y'); ?><br/>
                     製單員︰ Kasey So<br/>
                     電話︰ 34118666<br/>
                     電郵︰ cy.so@sjs.org.hk<br/>
@@ -77,18 +99,14 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th scope="col">項目</th>
                             <th scope="col">內容</th>
-                            <th scope="col">單價</th>
                             <th scope="col">總額</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <th scope="row">Test</th>
-                            <td>Test Content</td>
-                            <td>100 HKD</td>
-                            <td>100 HKD</td>
+                            <td><?php echo $activitySelection; ?></td>
+                            <td>$300 /位 / 2小時</td>
                         </tr>
                         </tbody>
                     </table>
@@ -96,10 +114,13 @@
             </div>
             <div class="col-12">
                 <p class="mt-2">
-                    備註︰<br/>
-                    1. 報價有效期至<br/>
-                    2. 如確認參觀活動，請在下方簽署或蓋印，連同活動申請表傳真或電郵至本館跟進<br/>
-                    3. 每15位參加者豁免1位工作人員，如工作人員需要一同參與活動，則需繳付活動費用
+                    備註:<br/>
+                    1. 報價有效期至 <?php
+                    echo date('d/m/Y', strtotime('+7 days'));
+                    ?>
+                    <br/>
+                    2. 如確認參觀活動,請在下方簽署或蓋印,連同活動申請表傳真或電郵至本館跟進<br/>
+                    3. 每15位參加者豁免1位工作人員,額外工作人員收費每位$190
                 </p>
                 <p class="mt-5">
                     付款方法︰<br/>
@@ -110,12 +131,15 @@
                     支票郵寄地址︰新界馬灣珀欣路33號香港挪亞方舟一樓方舟生命教育館
                 </p>
             </div>
+            <div class="col-12">
+                <br/><br/>
+            </div>
             <div class="col-6 d-flex justify-content-center align-items-center mt-4">
                 <div>
                     <p>團體簽名或印章</p>
                     <img src="assets/images/seal.png" alt="" class="img-fluid"/>
                     <p>___________________________</p>
-                    <p>日期︰</p>
+                    <p>日期︰ <?php echo date('d/m/Y'); ?></p>
                 </div>
             </div>
             <div class="col-6 d-flex justify-content-center align-items-center mt-4">
@@ -126,6 +150,19 @@
                     <p class="text-start">日期︰</p>
                 </div>
             </div>
+            <div class="col-12">
+                <br/><br/><br/><br/>
+            </div>
+            <div class="col-6 mt-5 small">
+                方舟生命教育館<br/>
+                電話︰3411 8881<br/>
+                電郵︰aleh@noahsark.com.hk<br/>
+                地址︰新界馬灣珀欣路33號香港挪亞方舟一樓方舟生命教育館
+            </div>
+            <div class="col-6 d-flex align-items-end mt-5 small">
+                傳真︰3411 8882<br/>
+                網址︰www.aleh.org.hk
+            </div>
         </div>
     </div>
 </section>
@@ -133,7 +170,7 @@
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-12 text-center mb-4">
+            <div class="col-12 text-center mb-4 mt-5">
                 <button type="button" class="btn btn-dark ps-5 pe-5" onclick="getPDF()">Download PDF</button>
             </div>
         </div>
@@ -177,7 +214,7 @@
             filename: formattedDateTime + '.pdf',
             image: {type: 'png', quality: 1},
             html2canvas: {scale: 1},
-            jsPDF: {unit: 'in', format: [8.5, 13.25], orientation: 'portrait'}
+            jsPDF: {unit: 'in', format: [8.5, 15.25], orientation: 'portrait'}
         };
 
         html2pdf().set(opt).from(element).save();
