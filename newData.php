@@ -106,7 +106,7 @@
                         <tbody>
                         <tr>
                             <td><?php echo $activitySelection; ?></td>
-                            <td>$300 /位 / 2小時</td>
+                            <td><?php echo $mealOptions; ?></td>
                         </tr>
                         </tbody>
                     </table>
