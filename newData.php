@@ -15,6 +15,7 @@
     <link href="assets/css/style.css" rel="stylesheet"/>
 
     <?php
+    error_reporting(0);
     $optionsArray = ["情緒小管家", "情理兼備", "快樂人生", "畫出平靜(和諧粉彩)", "畫出平靜(禪繞)", "畫出平靜(圓圈繪畫)", "新興運動", "劃出未來", "創出你想人生", "認識自我", "多元智能 : 反轉生命教育館", "我們這一家", "孝親工作坊", "&quot;觸&quot;得到的愛 – 親子按摩", "親子旅行日", "尋找友情的足跡", "桌遊一聚", "生命領袖", "快樂團隊", "欣賞與尊重", "選擇與為自己負責任", "接納與關懷", "守法小先鋒", "正向品德", "義工培訓", "方舟遊蹤－為你的遊歷增添樂趣", "馬灣名偵探 (包含戶外)", "吾生吾死 生死探索之旅", "離別中體驗愛", "重遊人生路", "對外培訓及支援服務主題講座", "對外培訓及支援服務工作坊", "企業培訓 及 度身訂造培訓"];
 
     $prices1 = ['', '', '', '$300 /位 / 2小時', '$300 /位 / 2小時', '$280 /位 / 2小時', '$300 /位 / 2小時', '', '', '', '', '$200 /位 / 2小時', '$170 /位 / 2小時', '', '$280 /位 / 2小時', '$300/位', '', '$170 / 位 / 2小時', '', '', '', '', '', '', '', '', '', '', '$280 /位 / 2小時', '', '', '', '', ''];
@@ -32,6 +33,11 @@
     $prices7 = ['', '', '$170 /位 / 2小時', '$300 /位 / 2小時', '$300 /位 / 2小時', '$280 /位 / 2小時', '$300 /位 / 2小時', '', '', '', '', '', '', '', '', '', '', '$170 /位 / 2小時', '', '', '$170 /位 / 2小時', '', '', '', '', '', '$170 /位 / 2小時', '', '', '', '', '', '', '$170 /位 / 2小時'];
 
 
+    $program_cost = 0;
+    $food_cost = 0;
+    $worker_cost = 0;
+    $ticket_cost = 0;
+
     $organization = $name = $telephone = $email = $fax = $event_date = $restrictedAreaPaper = $eventtime =
     $kinderGardenChild = $numofSubKin = $primarySchoolStudent = $numofSubPrimary = $middleSchoolStudent =
     $numofSubMiddle = $collegeStudents = $collegeStudentSub = $adult = $adultSub = $elderly = $disabledPerson =
@@ -48,31 +54,6 @@
         $activitySelection = $_POST['activitySelection'];
         $object = implode(", ", $_POST['object']);
         $newobject = explode(", ", $object);
-
-        $key = array_search($activitySelection, $optionsArray);
-
-
-        for ($i = 0; $i < count($newobject); $i++) {
-
-            if ($newobject[$i] == '幼稚園/親子') {
-                $price .= $prices1[$key] . '<br/>';
-            } else if ($newobject[$i] == '小學生') {
-                $price .= $prices2[$key] . '<br/>';
-            } else if ($newobject[$i] == '中學生') {
-                $price .= $prices3[$key] . '<br/>';
-            } else if ($newobject[$i] == '大專生/大學生') {
-                $price .= $prices4[$key] . '<br/>';
-            } else if ($newobject[$i] == '成人(64歲或以下)') {
-                $price .= $prices5[$key] . '<br/>';
-            } else if ($newobject[$i] == '長者(65歲或以上)') {
-                $price .= $prices6[$key] . '<br/>';
-            } else if ($newobject[$i] == '殘疾人士') {
-                $price .= $prices7[$key] . '<br/>';
-            }
-
-            echo $newobject[$i]. '<br/>';
-
-        }
 
 
         $restrictedAreaPaper = $_POST['restrictedAreaPaper'];
@@ -94,11 +75,74 @@
         $numOfStaff = $_POST['numOfStaff'];
 
         $needMeals = $_POST['needMeals'];
-        $language = $_POST['language'];
+
         $mealOptions = $_POST['mealOptions'];
         $ticketsMawan = $_POST['ticketsMawan'];
         $numOfMeals = $_POST['numOfMeals'];
         $numOfTickets = $_POST['numOfTickets'];
+
+
+        $key = array_search($activitySelection, $optionsArray);
+
+        $languageCost = $_POST['language'];
+
+        for ($i = 0; $i < count($newobject); $i++) {
+
+            if ($newobject[$i] == '幼稚園/親子') {
+                $price .= $prices1[$key] . '<br/>';
+                preg_match('/\$(\d+) \/位/', $prices1[$key], $matches);
+                if (isset($matches[1])) {
+                    $program_cost += $matches[1] * $numofSubKin * $languageCost;
+                }
+            } else if ($newobject[$i] == '小學生') {
+                $price .= $prices2[$key] . '<br/>';
+                preg_match('/\$(\d+) \/位/', $prices2[$key], $matches);
+                if (isset($matches[1])) {
+                    $program_cost += $matches[1] * $numofSubPrimary * $languageCost;
+                }
+            } else if ($newobject[$i] == '中學生') {
+                $price .= $prices3[$key] . '<br/>';
+                preg_match('/\$(\d+) \/位/', $prices3[$key], $matches);
+                if (isset($matches[1])) {
+                    $program_cost += $matches[1] * $numofSubMiddle * $languageCost;
+                }
+            } else if ($newobject[$i] == '大專生/大學生') {
+                $price .= $prices4[$key] . '<br/>';
+                preg_match('/\$(\d+) \/位/', $prices4[$key], $matches);
+                if (isset($matches[1])) {
+                    $program_cost += $matches[1] * $collegeStudentSub * $languageCost;
+                }
+            } else if ($newobject[$i] == '成人(64歲或以下)') {
+                $price .= $prices5[$key] . '<br/>';
+                preg_match('/\$(\d+) \/位/', $prices5[$key], $matches);
+                if (isset($matches[1])) {
+                    $program_cost += $matches[1] * $adultSub * $languageCost;
+                }
+            } else if ($newobject[$i] == '長者(65歲或以上)') {
+                $price .= $prices6[$key] . '<br/>';
+                preg_match('/\$(\d+) \/位/', $prices6[$key], $matches);
+                if (isset($matches[1])) {
+                    $program_cost += $matches[1] * $elderSub * $languageCost;
+                }
+            } else if ($newobject[$i] == '殘疾人士') {
+                $price .= $prices7[$key] . '<br/>';
+                preg_match('/\$(\d+) \/位/', $prices7[$key], $matches);
+                if (isset($matches[1])) {
+                    $program_cost += $matches[1] * $disabledPersonSub * $languageCost;
+                }
+            }
+        }
+
+        $worker_cost = 190 * $numOfStaff;
+
+        if ($worker_cost < 0) {
+            $worker_cost = 0;
+        }
+
+        $food_cost = $mealOptions * $numOfMeals;
+
+        $ticket_cost = 125 * $numOfTickets;
+
     }
     ?>
 </head>
@@ -152,7 +196,9 @@
                         <tbody>
                         <tr>
                             <td><?php echo $activitySelection; ?></td>
-                            <td><?php echo $price; ?></td>
+                            <td>
+                                $<?php echo $program_cost + $worker_cost + $food_cost + $ticket_cost; ?>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
