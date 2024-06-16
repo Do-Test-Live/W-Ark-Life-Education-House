@@ -15,11 +15,28 @@
     <link href="assets/css/style.css" rel="stylesheet"/>
 
     <?php
-    $organization = $name = $telephone = $email = $fax = $event_date  = $restrictedAreaPaper = $eventtime  =
-    $kinderGardenChild = $numofSubKin = $primarySchoolStudent =  $numofSubPrimary = $middleSchoolStudent =
-    $numofSubMiddle =  $collegeStudents =  $collegeStudentSub = $adult = $adultSub = $elderly = $disabledPerson =
-    $disabledPersonSub = $numOfStaff = $activitySelection = $needMeals =  $language = $mealOptions = $ticketsMawan =
-    $numOfMeals = $numOfTickets = $object = '';
+    $optionsArray = ["情緒小管家", "情理兼備", "快樂人生", "畫出平靜(和諧粉彩)", "畫出平靜(禪繞)", "畫出平靜(圓圈繪畫)", "新興運動", "劃出未來", "創出你想人生", "認識自我", "多元智能 : 反轉生命教育館", "我們這一家", "孝親工作坊", "&quot;觸&quot;得到的愛 – 親子按摩", "親子旅行日", "尋找友情的足跡", "桌遊一聚", "生命領袖", "快樂團隊", "欣賞與尊重", "選擇與為自己負責任", "接納與關懷", "守法小先鋒", "正向品德", "義工培訓", "方舟遊蹤－為你的遊歷增添樂趣", "馬灣名偵探 (包含戶外)", "吾生吾死 生死探索之旅", "離別中體驗愛", "重遊人生路", "對外培訓及支援服務主題講座", "對外培訓及支援服務工作坊", "企業培訓 及 度身訂造培訓"];
+
+    $prices1 = ['', '', '', '$300 /位 / 2小時', '$300 /位 / 2小時', '$280 /位 / 2小時', '$300 /位 / 2小時', '', '', '', '', '$200 /位 / 2小時', '$170 /位 / 2小時', '', '$280 /位 / 2小時', '$300/位', '', '$170 / 位 / 2小時', '', '', '', '', '', '', '', '', '', '', '$280 /位 / 2小時', '', '', '', '', ''];
+
+    $prices2 = ['$170 /位 / 2小時', '', '', '$300 /位 / 2小時', '$300 /位 / 2小時', '$280 /位 / 2小時', '$300 /位 / 2小時', '$170 /位 / 2小時', '', '', '', '$200 /位 / 2小時', '$170 /位 / 2小時', '$170 /位 / 2小時', '$280 /位 / 2小時', '', '$170 /位 / 2小時', '$170 /位 / 2小時', '', '$170 /位 / 2小時', '$170 /位 / 2小時', '$170 /位 / 2小時', '$170 /位 / 2小時', '$170 /位 / 2小時', '$170 /位 / 2小時', '$170 /位 / 2小時', '$170 /位 / 2小時', '', '$280 /位 / 2小時', '', '', '', '$170 /位 / 2小時', ''];
+
+    $prices3 = ['', '$190 /位 / 2小時', '', '$300 /位 / 2小時', '$300 /位 / 2小時', '$280 /位 / 2小時', '$300 /位 / 2小時', '', '$190 /位 / 2小時', '$190 /位 / 2小時', '', '', '', '', '', '', '$190 /位 / 2小時', '$190 / 位 / 2小時', '', '$190 /位 / 2小時', '$190 /位 / 2小時', '$190 /位 / 2小時', '$190 /位 / 2小時', '$190 /位 / 2小時', '', '', '$190 /位 / 2小時', '', '', '$190 / 位 / 2小時', '', '$400 / 位 / 7小時', '$190 / 位 / 2小時', ''];
+
+    $prices4 = ['', '', '', '$300 /位 / 2小時', '$300 /位 / 2小時', '$280 /位 / 2小時', '$300 /位 / 2小時', '', '', '$190 /位 / 2小時', '', '', '', '', '', '', '$190 /位 / 2小時', '$190 / 位 / 2小時', '', '$190 /位 / 2小時', '$190 /位 / 2小時', '$190 /位 / 2小時', '$190 /位 / 2小時', '$190 /位 / 2小時', '', '', '$190 /位 / 2小時', '', '', '$190 / 位 / 2小時', '', '$400 / 位 / 7小時', '$190 / 位 / 2小時', ''];
+
+    $prices5 = ['', '', '$190 /位 / 2小時', '', '', '', '', '', '', '', '', '', '$230 /位 / 2小時', '', '$300 /位 / 2小時', '$350 /位', '', '$190 /位 / 2小時', '', '', '', '', '', '$190 /位 / 2小時', '', '$300 /位 / 2小時', '', '', '', '', '$190 /位 / 2小時'];
+
+    $prices6 = ['', '', '$170 /位 / 2小時', '$300 /位 / 2小時', '$300 /位 / 2小時', '$280 /位 / 2小時', '$300 /位 / 2小時', '', '', '', '', '', '', '', '', '', '', '$170 /位 / 2小時', '', '', '$170 /位 / 2小時', '', '', '', '', '', '$170 /位 / 2小時', '', '', '', '', '', '', '$170 /位 / 2小時'];
+
+    $prices7 = ['', '', '$170 /位 / 2小時', '$300 /位 / 2小時', '$300 /位 / 2小時', '$280 /位 / 2小時', '$300 /位 / 2小時', '', '', '', '', '', '', '', '', '', '', '$170 /位 / 2小時', '', '', '$170 /位 / 2小時', '', '', '', '', '', '$170 /位 / 2小時', '', '', '', '', '', '', '$170 /位 / 2小時'];
+
+
+    $organization = $name = $telephone = $email = $fax = $event_date = $restrictedAreaPaper = $eventtime =
+    $kinderGardenChild = $numofSubKin = $primarySchoolStudent = $numofSubPrimary = $middleSchoolStudent =
+    $numofSubMiddle = $collegeStudents = $collegeStudentSub = $adult = $adultSub = $elderly = $disabledPerson =
+    $disabledPersonSub = $numOfStaff = $activitySelection = $needMeals = $language = $mealOptions = $ticketsMawan =
+    $numOfMeals = $numOfTickets = $object = $price = '';
 
     if (isset($_POST['dataSubmit'])) {
         $organization = $_POST['organization'];
@@ -28,7 +45,36 @@
         $fax = $_POST['fax'];
         $email = $_POST['email'];
         $event_date = $_POST['event_date'];
+        $activitySelection = $_POST['activitySelection'];
         $object = implode(", ", $_POST['object']);
+        $newobject = explode(", ", $object);
+
+        $key = array_search($activitySelection, $optionsArray);
+
+
+        for ($i = 0; $i < count($newobject); $i++) {
+
+            if ($newobject[$i] == '幼稚園/親子') {
+                $price .= $prices1[$key] . '<br/>';
+            } else if ($newobject[$i] == '小學生') {
+                $price .= $prices2[$key] . '<br/>';
+            } else if ($newobject[$i] == '中學生') {
+                $price .= $prices3[$key] . '<br/>';
+            } else if ($newobject[$i] == '大專生/大學生') {
+                $price .= $prices4[$key] . '<br/>';
+            } else if ($newobject[$i] == '成人(64歲或以下)') {
+                $price .= $prices5[$key] . '<br/>';
+            } else if ($newobject[$i] == '長者(65歲或以上)') {
+                $price .= $prices6[$key] . '<br/>';
+            } else if ($newobject[$i] == '殘疾人士') {
+                $price .= $prices7[$key] . '<br/>';
+            }
+
+            echo $newobject[$i]. '<br/>';
+
+        }
+
+
         $restrictedAreaPaper = $_POST['restrictedAreaPaper'];
         $eventtime = $_POST['eventtime'];
         $kinderGardenChild = $_POST['kinderGardenChild'];
@@ -46,7 +92,7 @@
         $disabledPerson = $_POST['disabledPerson'];
         $disabledPersonSub = $_POST['disabledPersonSub'];
         $numOfStaff = $_POST['numOfStaff'];
-        $activitySelection = $_POST['activitySelection'];
+
         $needMeals = $_POST['needMeals'];
         $language = $_POST['language'];
         $mealOptions = $_POST['mealOptions'];
@@ -79,7 +125,7 @@
                     傳真︰ <?php echo $fax; ?><br/>
                     電郵︰ <?php echo $email; ?><br/>
                     <br/>
-                    活動日期︰ <?php echo date('d/m/Y',strtotime($event_date)); ?><br/>
+                    活動日期︰ <?php echo date('d/m/Y', strtotime($event_date)); ?><br/>
                     對象︰<?php echo $object; ?>
                 </p>
             </div>
@@ -106,7 +152,7 @@
                         <tbody>
                         <tr>
                             <td><?php echo $activitySelection; ?></td>
-                            <td><?php echo $mealOptions; ?></td>
+                            <td><?php echo $price; ?></td>
                         </tr>
                         </tbody>
                     </table>

@@ -183,7 +183,7 @@
                 </div>
                 <div class="col-6 mb-3">
                     <label for="mealOptions" class="form-label">膳食選擇 <span class="text-danger">*</span></label>
-                    <select class="form-select"  id="mealOptions" name="mealOptions" required>
+                    <select class="form-select"  id="mealOptions" name="mealOptions" required disabled>
                         <option value="中式圍餐 $2100/每份 (12人份量)">中式圍餐 $2100/每份 (12人份量)</option>
                         <option value="飯盒餐 連一包紙飽飲品 $74/每份 (1人份量)">飯盒餐 連一包紙飽飲品 $74/每份 (1人份量)</option>
                         <option value="自助餐 $260/每份 (1人份) (最少50人起)">自助餐 $260/每份 (1人份) (最少50人起)</option>
@@ -203,7 +203,7 @@
                 </div>
                 <div class="col-6 mb-3">
                     <label for="numOfTickets" class="form-label">需要門票的數量 <span class="text-danger">*</span></label>
-                    <input type="number" class="form-control" name="numOfTickets" id="numOfTickets" placeholder="" required>
+                    <input type="number" class="form-control" name="numOfTickets" id="numOfTickets" placeholder="" required disabled>
                 </div>
                 <div class="col-12 mb-3 text-center">
                     <button type="submit" class="btn btn-dark ps-5 pe-5" name="dataSubmit">Submit</button>
@@ -225,6 +225,77 @@
 </footer>
 <!-- Footer End -->
 
+<!-- Modal -->
+<div class="modal fade" id="meals" tabindex="-1" aria-labelledby="mealsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="mealsModalLabel">Message Box</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                所有膳食安排須在活動前十個工作天確認
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="restrictedArea" tabindex="-1" aria-labelledby="mealsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="restrictedAreaModalLabel">Message Box</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                請前往以下網址下載相關申請表格。link of our download page
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="activity" tabindex="-1" aria-labelledby="activityModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="activityModalLabel">Message Box</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                吾生吾死 生死探索之旅只限中四或以上的中學生以及大專生參與
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="activitySecond" tabindex="-1" aria-labelledby="activityModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="activitySecondModalLabel">Message Box</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                請致電至3411 8881 或電郵至aleh@noahsark.com.hk 以獲取客製化的報價
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="timeModal" tabindex="-1" aria-labelledby="activityModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="timeModalLabel">Message Box</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                如乘坐旅遊巴於9點前進入馬灣，則必須申請禁區紙
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- JS Start -->
 <script src="assets/vendor/Bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="assets/vendor/jQuery/jquery-3.6.4.min.js"></script>
@@ -232,5 +303,81 @@
 <script src="assets/vendor/uikit/js/uikit.min.js"></script>
 <script src="assets/vendor/uikit/js/uikit-icons.min.js"></script>
 <script src="assets/js/main.js"></script>
+
+<script>
+    document.getElementById('needMeals').addEventListener('change', function () {
+        if (this.checked) {
+            $('#meals').modal('show');
+            $('#mealOptions').prop('disabled', false);
+        } else {
+            $('#meals').modal('hide');
+            $('#mealOptions').prop('disabled', true);
+        }
+    });
+
+    document.getElementById('ticketsMawan').addEventListener('change', function () {
+        if (this.checked) {
+            $('#numOfTickets').prop('disabled', false);
+        } else {
+            $('#numOfTickets').prop('disabled', true);
+        }
+    });
+
+    document.getElementById('activitySelection').addEventListener('change', function () {
+        if (this.value=='吾生吾死 生死探索之旅') {
+            $('#activity').modal('show');
+        } else {
+            $('#activity').modal('hide');
+        }
+    });
+
+    document.getElementById('restrictedAreaPaper').addEventListener('change', function () {
+        if (this.checked) {
+            $('#restrictedArea').modal('show');
+        } else {
+            $('#restrictedArea').modal('hide');
+        }
+    });
+
+    document.getElementById('activitySelection').addEventListener('change', function () {
+        if (this.value=='吾生吾死 生死探索之旅') {
+            $('#activitySecond').modal('hide');
+            $('#activity').modal('show');
+        }else if (this.value=='對外培訓及支援服務主題講座'||this.value=='對外培訓及支援服務工作坊'||this.value=='企業培訓 及 度身訂造培訓') {
+            $('#activity').modal('hide');
+            $('#activitySecond').modal('show');
+        } else {
+            $('#activity').modal('hide');
+            $('#activitySecond').modal('hide');
+        }
+    });
+
+    function checkHongKongTime() {
+        // Get current UTC time
+        const now = new Date();
+
+        // Convert to UTC time (milliseconds)
+        const utcTime = now.getTime() + (now.getTimezoneOffset() * 60000);
+
+        // Hong Kong is UTC+8
+        const offset = 8 * 60 * 60000;
+
+        // Get Hong Kong time
+        const hongKongTime = new Date(utcTime + offset);
+
+        // Get hours and minutes
+        const hours = hongKongTime.getHours();
+        const minutes = hongKongTime.getMinutes();
+
+        // Check if the current time is between 7:30 AM and 9:00 AM
+        if ((hours === 7 && minutes >= 30) || (hours === 8) || (hours === 9 && minutes === 0)) {
+            $('#timeModal').modal('show');
+        }
+    }
+
+    // Check the time when the page loads
+    window.onload = checkHongKongTime;
+
+</script>
 </body>
 </html>
