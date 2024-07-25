@@ -15,22 +15,134 @@
     <link href="assets/css/style.css" rel="stylesheet"/>
 
     <?php
-    $organization = $name = $telephone = $email = $fax = $event_date = $object = $age = $activity = $language = $participants = $staff = $lunch = $food = $amount = $tickets = $number_of_tickets = '';
+    error_reporting(0);
+    $optionsArray = ["情緒小管家", "情理兼備", "快樂人生", "畫出平靜(和諧粉彩)", "畫出平靜(禪繞)", "畫出平靜(圓圈繪畫)", "新興運動", "劃出未來", "創出你想人生", "認識自我", "多元智能 : 反轉生命教育館", "我們這一家", "孝親工作坊", "&quot;觸&quot;得到的愛 – 親子按摩", "親子旅行日", "尋找友情的足跡", "桌遊一聚", "生命領袖", "快樂團隊", "欣賞與尊重", "選擇與為自己負責任", "接納與關懷", "守法小先鋒", "正向品德", "義工培訓", "方舟遊蹤－為你的遊歷增添樂趣", "馬灣名偵探 (包含戶外)", "吾生吾死 生死探索之旅", "離別中體驗愛", "重遊人生路", "對外培訓及支援服務主題講座", "對外培訓及支援服務工作坊", "企業培訓 及 度身訂造培訓"];
+
+    $prices1 = ['', '', '', '$300 /位 / 2小時', '$300 /位 / 2小時', '$280 /位 / 2小時', '$300 /位 / 2小時', '', '', '', '', '$200 /位 / 2小時', '$170 /位 / 2小時', '', '$280 /位 / 2小時', '$300/位', '', '$170 / 位 / 2小時', '', '', '', '', '', '', '', '', '', '', '$280 /位 / 2小時', '', '', '', '', ''];
+
+    $prices2 = ['$170 /位 / 2小時', '', '', '$300 /位 / 2小時', '$300 /位 / 2小時', '$280 /位 / 2小時', '$300 /位 / 2小時', '$170 /位 / 2小時', '', '', '', '$200 /位 / 2小時', '$170 /位 / 2小時', '$170 /位 / 2小時', '$280 /位 / 2小時', '', '$170 /位 / 2小時', '$170 /位 / 2小時', '', '$170 /位 / 2小時', '$170 /位 / 2小時', '$170 /位 / 2小時', '$170 /位 / 2小時', '$170 /位 / 2小時', '$170 /位 / 2小時', '$170 /位 / 2小時', '$170 /位 / 2小時', '', '$280 /位 / 2小時', '', '', '', '$170 /位 / 2小時', ''];
+
+    $prices3 = ['', '$190 /位 / 2小時', '', '$300 /位 / 2小時', '$300 /位 / 2小時', '$280 /位 / 2小時', '$300 /位 / 2小時', '', '$190 /位 / 2小時', '$190 /位 / 2小時', '', '', '', '', '', '', '$190 /位 / 2小時', '$190 / 位 / 2小時', '', '$190 /位 / 2小時', '$190 /位 / 2小時', '$190 /位 / 2小時', '$190 /位 / 2小時', '$190 /位 / 2小時', '', '', '$190 /位 / 2小時', '', '', '$190 / 位 / 2小時', '', '$400 / 位 / 7小時', '$190 / 位 / 2小時', ''];
+
+    $prices4 = ['', '', '', '$300 /位 / 2小時', '$300 /位 / 2小時', '$280 /位 / 2小時', '$300 /位 / 2小時', '', '', '$190 /位 / 2小時', '', '', '', '', '', '', '$190 /位 / 2小時', '$190 / 位 / 2小時', '', '$190 /位 / 2小時', '$190 /位 / 2小時', '$190 /位 / 2小時', '$190 /位 / 2小時', '$190 /位 / 2小時', '', '', '$190 /位 / 2小時', '', '', '$190 / 位 / 2小時', '', '$400 / 位 / 7小時', '$190 / 位 / 2小時', ''];
+
+    $prices5 = ['', '', '$190 /位 / 2小時', '', '', '', '', '', '', '', '', '', '$230 /位 / 2小時', '', '$300 /位 / 2小時', '$350 /位', '', '$190 /位 / 2小時', '', '', '', '', '', '$190 /位 / 2小時', '', '$300 /位 / 2小時', '', '', '', '', '$190 /位 / 2小時'];
+
+    $prices6 = ['', '', '$170 /位 / 2小時', '$300 /位 / 2小時', '$300 /位 / 2小時', '$280 /位 / 2小時', '$300 /位 / 2小時', '', '', '', '', '', '', '', '', '', '', '$170 /位 / 2小時', '', '', '$170 /位 / 2小時', '', '', '', '', '', '$170 /位 / 2小時', '', '', '', '', '', '', '$170 /位 / 2小時'];
+
+    $prices7 = ['', '', '$170 /位 / 2小時', '$300 /位 / 2小時', '$300 /位 / 2小時', '$280 /位 / 2小時', '$300 /位 / 2小時', '', '', '', '', '', '', '', '', '', '', '$170 /位 / 2小時', '', '', '$170 /位 / 2小時', '', '', '', '', '', '$170 /位 / 2小時', '', '', '', '', '', '', '$170 /位 / 2小時'];
+
+
+    $program_cost = 0;
+    $food_cost = 0;
+    $worker_cost = 0;
+    $ticket_cost = 0;
+
+    $organization = $name = $telephone = $email = $fax = $event_date = $restrictedAreaPaper = $eventtime =
+    $kinderGardenChild = $numofSubKin = $primarySchoolStudent = $numofSubPrimary = $middleSchoolStudent =
+    $numofSubMiddle = $collegeStudents = $collegeStudentSub = $adult = $adultSub = $elderly = $disabledPerson =
+    $disabledPersonSub = $numOfStaff = $activitySelection = $needMeals = $language = $mealOptions = $ticketsMawan =
+    $numOfMeals = $numOfTickets = $object = $price = '';
+
     if (isset($_POST['dataSubmit'])) {
         $organization = $_POST['organization'];
         $name = $_POST['name'];
         $telephone = $_POST['telephone'];
-        $email = $_POST['email'];
         $fax = $_POST['fax'];
+        $email = $_POST['email'];
         $event_date = $_POST['event_date'];
-        $object = $_POST['object'];
-        $age = $_POST['age'];
-        $activity = $_POST['activity'];
-        $language = $_POST['language'];
-        $participants = $_POST['participants'];
-        $staff = $_POST['staff'];
-        $lunch = $_POST['lunch'];
-        $food = $_POST['food'];
+        $activitySelection = $_POST['activitySelection'];
+        $object = implode(", ", $_POST['object']);
+        $newobject = explode(", ", $object);
+
+
+        $restrictedAreaPaper = $_POST['restrictedAreaPaper'];
+        $eventtime = $_POST['eventtime'];
+        $kinderGardenChild = $_POST['kinderGardenChild'];
+        $numofSubKin = $_POST['numofSubKin'];
+        $primarySchoolStudent = $_POST['primarySchoolStudent'];
+        $numofSubPrimary = $_POST['numofSubPrimary'];
+        $middleSchoolStudent = $_POST['middleSchoolStudent'];
+        $numofSubMiddle = $_POST['numofSubMiddle'];
+        $collegeStudents = $_POST['collegeStudents'];
+        $collegeStudentSub = $_POST['collegeStudentSub'];
+        $adult = $_POST['adult'];
+        $adultSub = $_POST['adultSub'];
+        $elderly = $_POST['elderly'];
+        $elderSub = $_POST['elderSub'];
+        $disabledPerson = $_POST['disabledPerson'];
+        $disabledPersonSub = $_POST['disabledPersonSub'];
+        $numOfStaff = $_POST['numOfStaff'];
+
+        $needMeals = $_POST['needMeals'];
+
+        $mealOptions = $_POST['mealOptions'];
+        $ticketsMawan = $_POST['ticketsMawan'];
+        $numOfMeals = $_POST['numOfMeals'];
+        $numOfTickets = $_POST['numOfTickets'];
+
+
+        $key = array_search($activitySelection, $optionsArray);
+
+        $languageCost = $_POST['language'];
+
+        for ($i = 0; $i < count($newobject); $i++) {
+
+            if ($newobject[$i] == '幼稚園/親子') {
+                $price .= $prices1[$key] . '<br/>';
+                preg_match('/\$(\d+) \/位/', $prices1[$key], $matches);
+                if (isset($matches[1])) {
+                    $program_cost += $matches[1] * $numofSubKin * $languageCost;
+                }
+            } else if ($newobject[$i] == '小學生') {
+                $price .= $prices2[$key] . '<br/>';
+                preg_match('/\$(\d+) \/位/', $prices2[$key], $matches);
+                if (isset($matches[1])) {
+                    $program_cost += $matches[1] * $numofSubPrimary * $languageCost;
+                }
+            } else if ($newobject[$i] == '中學生') {
+                $price .= $prices3[$key] . '<br/>';
+                preg_match('/\$(\d+) \/位/', $prices3[$key], $matches);
+                if (isset($matches[1])) {
+                    $program_cost += $matches[1] * $numofSubMiddle * $languageCost;
+                }
+            } else if ($newobject[$i] == '大專生/大學生') {
+                $price .= $prices4[$key] . '<br/>';
+                preg_match('/\$(\d+) \/位/', $prices4[$key], $matches);
+                if (isset($matches[1])) {
+                    $program_cost += $matches[1] * $collegeStudentSub * $languageCost;
+                }
+            } else if ($newobject[$i] == '成人(64歲或以下)') {
+                $price .= $prices5[$key] . '<br/>';
+                preg_match('/\$(\d+) \/位/', $prices5[$key], $matches);
+                if (isset($matches[1])) {
+                    $program_cost += $matches[1] * $adultSub * $languageCost;
+                }
+            } else if ($newobject[$i] == '長者(65歲或以上)') {
+                $price .= $prices6[$key] . '<br/>';
+                preg_match('/\$(\d+) \/位/', $prices6[$key], $matches);
+                if (isset($matches[1])) {
+                    $program_cost += $matches[1] * $elderSub * $languageCost;
+                }
+            } else if ($newobject[$i] == '殘疾人士') {
+                $price .= $prices7[$key] . '<br/>';
+                preg_match('/\$(\d+) \/位/', $prices7[$key], $matches);
+                if (isset($matches[1])) {
+                    $program_cost += $matches[1] * $disabledPersonSub * $languageCost;
+                }
+            }
+        }
+
+        $worker_cost = 190 * $numOfStaff;
+
+        if ($worker_cost < 0) {
+            $worker_cost = 0;
+        }
+
+        $food_cost = $mealOptions * $numOfMeals;
+
+        $ticket_cost = 125 * $numOfTickets;
+
     }
     ?>
 </head>
@@ -44,7 +156,7 @@
             <div class="col-10 text-center d-flex justify-content-center align-items-center">
                 <h4 class="fw-bolder">
                     聖雅各福群會 方舟生命教育館<br/>
-                    報價單
+                    <span class="text-decoration-underline">報價單</span>
                 </h4>
             </div>
         </div>
@@ -57,14 +169,14 @@
                     傳真︰ <?php echo $fax; ?><br/>
                     電郵︰ <?php echo $email; ?><br/>
                     <br/>
-                    活動日期︰ <?php echo $event_date; ?><br/>
-                    對象︰ <?php echo $object; ?>
+                    活動日期︰ <?php echo date('d/m/Y', strtotime($event_date)); ?><br/>
+                    對象︰<?php echo $object; ?>
                 </p>
             </div>
             <div class="col-lg-6 col-6 d-flex justify-content-end align-items-end">
                 <p>
-                    報價單編號︰ <?php echo '00001'; ?><br/>
-                    報價單日期︰ <?php echo date('d-m-Y'); ?><br/>
+                    報價單編號︰ <?php echo rand(1000, 9999); ?><br/>
+                    報價單日期︰ <?php echo date('d/m/Y'); ?><br/>
                     製單員︰ Kasey So<br/>
                     電話︰ 34118666<br/>
                     電郵︰ cy.so@sjs.org.hk<br/>
@@ -77,18 +189,16 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th scope="col">項目</th>
                             <th scope="col">內容</th>
-                            <th scope="col">單價</th>
                             <th scope="col">總額</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <th scope="row">Test</th>
-                            <td>Test Content</td>
-                            <td>100 HKD</td>
-                            <td>100 HKD</td>
+                            <td><?php echo $activitySelection; ?></td>
+                            <td>
+                                $<?php echo $program_cost + $worker_cost + $food_cost + $ticket_cost; ?>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
@@ -96,10 +206,13 @@
             </div>
             <div class="col-12">
                 <p class="mt-2">
-                    備註︰<br/>
-                    1. 報價有效期至<br/>
-                    2. 如確認參觀活動，請在下方簽署或蓋印，連同活動申請表傳真或電郵至本館跟進<br/>
-                    3. 每15位參加者豁免1位工作人員，如工作人員需要一同參與活動，則需繳付活動費用
+                    備註:<br/>
+                    1. 報價有效期至 <?php
+                    echo date('d/m/Y', strtotime('+7 days'));
+                    ?>
+                    <br/>
+                    2. 如確認參觀活動,請在下方簽署或蓋印,連同活動申請表傳真或電郵至本館跟進<br/>
+                    3. 每15位參加者豁免1位工作人員,額外工作人員收費每位$190
                 </p>
                 <p class="mt-5">
                     付款方法︰<br/>
@@ -110,12 +223,15 @@
                     支票郵寄地址︰新界馬灣珀欣路33號香港挪亞方舟一樓方舟生命教育館
                 </p>
             </div>
+            <div class="col-12">
+                <br/><br/>
+            </div>
             <div class="col-6 d-flex justify-content-center align-items-center mt-4">
                 <div>
                     <p>團體簽名或印章</p>
                     <img src="assets/images/seal.png" alt="" class="img-fluid"/>
                     <p>___________________________</p>
-                    <p>日期︰</p>
+                    <p>日期︰ <?php echo date('d/m/Y'); ?></p>
                 </div>
             </div>
             <div class="col-6 d-flex justify-content-center align-items-center mt-4">
@@ -126,6 +242,19 @@
                     <p class="text-start">日期︰</p>
                 </div>
             </div>
+            <div class="col-12">
+                <br/><br/><br/><br/>
+            </div>
+            <div class="col-6 mt-5 small">
+                方舟生命教育館<br/>
+                電話︰3411 8881<br/>
+                電郵︰aleh@noahsark.com.hk<br/>
+                地址︰新界馬灣珀欣路33號香港挪亞方舟一樓方舟生命教育館
+            </div>
+            <div class="col-6 d-flex align-items-end mt-5 small">
+                傳真︰3411 8882<br/>
+                網址︰www.aleh.org.hk
+            </div>
         </div>
     </div>
 </section>
@@ -133,7 +262,7 @@
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-12 text-center mb-4">
+            <div class="col-12 text-center mb-4 mt-5">
                 <button type="button" class="btn btn-dark ps-5 pe-5" onclick="getPDF()">Download PDF</button>
             </div>
         </div>
@@ -177,7 +306,7 @@
             filename: formattedDateTime + '.pdf',
             image: {type: 'png', quality: 1},
             html2canvas: {scale: 1},
-            jsPDF: {unit: 'in', format: [8.5, 13.25], orientation: 'portrait'}
+            jsPDF: {unit: 'in', format: [8.5, 15.25], orientation: 'portrait'}
         };
 
         html2pdf().set(opt).from(element).save();

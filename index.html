@@ -13,6 +13,13 @@
     <link href="assets/vendor/Bootstrap/font/bootstrap-icons.min.css" rel="stylesheet"/>
     <link href="assets/vendor/uikit/css/uikit.min.css" rel="stylesheet"/>
     <link href="assets/css/style.css" rel="stylesheet"/>
+
+    <script>
+        function toggleInput(checkbox, inputName) {
+            let inputField = document.getElementsByName(inputName)[0];
+            inputField.disabled = !checkbox.checked;
+        }
+    </script>
 </head>
 <body>
 <!-- Header Start -->
@@ -45,94 +52,160 @@
                     <input type="tel" class="form-control" id="telephone" name="telephone" placeholder="" required>
                 </div>
                 <div class="col-6 mb-3">
-                    <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="" required>
+                    <label for="fax" class="form-label">傳真(Optional)</label>
+                    <input type="tel" class="form-control" id="fax" name="fax" placeholder="">
                 </div>
                 <div class="col-6 mb-3">
-                    <label for="fax" class="form-label">傳真</label>
-                    <input type="tel" class="form-control" id="fax" name="fax" placeholder="">
+                    <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="" required>
                 </div>
                 <div class="col-6 mb-3">
                     <label for="event_date" class="form-label">活動日期 <span class="text-danger">*</span></label>
                     <input type="date" class="form-control" id="event_date" name="event_date" placeholder="" required>
                 </div>
-                <div class="col-6 mb-3">
-                    <label for="object" class="form-label">對象 <span class="text-danger">*</span></label>
-                    <select class="form-select" id="object" name="object" required>
-                        <option selected>Dropdown</option>
-                        <option value="One">One</option>
-                        <option value="Two">Two</option>
-                        <option value="Three">Three</option>
-                    </select>
-                </div>
-                <div class="col-6 mb-3">
-                    <label for="age" class="form-label">參加者年齡 <span class="text-danger">*</span></label>
-                    <select class="form-select" id="age" name="age" required>
-                        <option selected>Dropdown</option>
-                        <option value="1-5">1-5</option>
-                        <option value="6-10">6-10</option>
-                        <option value="11-20">11-20</option>
-                    </select>
-                </div>
-                <div class="col-6 mb-3">
-                    <label for="activity" class="form-label">活動名稱 <span class="text-danger">*</span></label>
-                    <select class="form-select" id="activity" name="activity" required>
-                        <option selected>Dropdown</option>
-                        <option value="One">One</option>
-                        <option value="Two">Two</option>
-                        <option value="Three">Three</option>
-                    </select>
-                </div>
-                <div class="col-6 mb-3">
-                    <label for="language" class="form-label">導賞語言 <span class="text-danger">*</span></label>
-                    <select class="form-select" id="language" name="language" required>
-                        <option selected>Dropdown</option>
-                        <option value="Chinese">Chinese</option>
-                        <option value="English">English</option>
-                    </select>
-                </div>
-                <div class="col-6 mb-3">
-                    <label for="participants" class="form-label">參加者數目 <span class="text-danger">*</span></label>
-                    <input type="number" class="form-control" id="participants" name="participants" placeholder="" required>
-                </div>
-                <div class="col-6 mb-3">
-                    <label for="staff" class="form-label">參加者方工作人員數量 <span class="text-danger">*</span></label>
-                    <input type="number" class="form-control" id="staff" name="staff" placeholder="" required>
-                </div>
-                <div class="col-6 mb-3">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="lunch" name="lunch" required>
-                        <label class="form-check-label" for="lunch">
-                            是否需要午餐
+                <div class="col-6 mb-3 d-flex align-items-end">
+                    <div class="form-check" style="padding-left: unset">
+                        <label class="form-check-label" for="restrictedAreaPaper">
+                            是否需要申請禁區紙
                         </label>
+                        <input class="form-check-input" type="checkbox" value="" id="restrictedAreaPaper" name="restrictedAreaPaper" style="float: unset;margin-left: unset">
                     </div>
                 </div>
                 <div class="col-6 mb-3">
-                    <label for="food" class="form-label">導賞語言 <span class="text-danger">*</span></label>
-                    <select class="form-select" id="food" name="food" required>
-                        <option selected>Dropdown</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    <label class="form-label" for="eventtime">活動開始時間 <span class="text-danger">*</span></label>
+                    <input type="time" class="form-control" name="eventtime" id="eventtime" placeholder="" required>
+                </div>
+                <div class="col-6" style="line-height: 40px;">
+                    <div class="row text-center">
+                        <div class="col-lg-3 mb-3">
+                            <br/>
+                            對象<br/>
+                            人數
+                        </div>
+                        <div class="col-lg-3 mb-3">
+                            幼稚園/親子<br/>
+                            <input class="form-check-input" name="object[]" type="checkbox" value="幼稚園/親子" onclick="toggleInput(this, 'numofSubKin')" style="float: unset;margin-left: unset"><br/>
+                            <input type="number" class="form-control" placeholder="" name="numofSubKin" disabled>
+                        </div>
+                        <div class="col-lg-3 mb-3">
+                            小學生<br/>
+                            <input class="form-check-input" type="checkbox" name="object[]" value="小學生" onclick="toggleInput(this, 'numofSubPrimary')" style="float: unset;margin-left: unset"><br/>
+                            <input type="number" class="form-control" placeholder="" name="numofSubPrimary" disabled>
+                        </div>
+                        <div class="col-lg-3 mb-3">
+                            中學生<br/>
+                            <input class="form-check-input" type="checkbox" value="中學生" name="object[]" onclick="toggleInput(this, 'numofSubMiddle')" style="float: unset;margin-left: unset"><br/>
+                            <input type="number" class="form-control" placeholder="" name="numofSubMiddle" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6" style="line-height: 40px;">
+                    <div class="row text-center">
+                        <div class="col-lg-3 mb-3">
+                            大專生/大學生<br/>
+                            <input class="form-check-input" type="checkbox" value="大專生/大學生" name="object[]" onclick="toggleInput(this, 'collegeStudentSub')" style="float: unset;margin-left: unset"><br/>
+                            <input type="number" class="form-control" placeholder="" name="collegeStudentSub" disabled>
+                        </div>
+                        <div class="col-lg-3 mb-3">
+                            成人(64歲或以下)<br/>
+                            <input class="form-check-input" type="checkbox" value="成人(64歲或以下)" name="object[]" onclick="toggleInput(this, 'adultSub')" style="float: unset;margin-left: unset"><br/>
+                            <input type="number" class="form-control" placeholder="" name="adultSub" disabled>
+                        </div>
+                        <div class="col-lg-3 mb-3">
+                            長者(65歲或以上)<br/>
+                            <input class="form-check-input" type="checkbox" value="長者(65歲或以上)" name="object[]" onclick="toggleInput(this, 'elderSub')" style="float: unset;margin-left: unset"><br/>
+                            <input type="number" class="form-control" placeholder="" name="elderSub" disabled>
+                        </div>
+                        <div class="col-lg-3 mb-3">
+                            殘疾人士<br/>
+                            <input class="form-check-input" type="checkbox" value="殘疾人士" name="object[]" onclick="toggleInput(this, 'disabledPersonSub')" style="float: unset;margin-left: unset"><br/>
+                            <input type="number" class="form-control" placeholder="" name="disabledPersonSub" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="numOfStaff" class="form-label">參加者方工作人員數量 <span class="text-danger">*</span></label>
+                    <input type="number" class="form-control" placeholder="" name="numOfStaff" id="numOfStaff" required>
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="activitySelection" class="form-label">活動選擇 <span class="text-danger">*</span></label>
+                    <select class="form-select"  id="activitySelection" name="activitySelection" required>
+                        <option value="情緒小管家">情緒小管家</option>
+                        <option value="情理兼備">情理兼備</option>
+                        <option value="快樂人生">快樂人生</option>
+                        <option value="畫出平靜(和諧粉彩)">畫出平靜(和諧粉彩)</option>
+                        <option value="畫出平靜(禪繞)">畫出平靜(禪繞)</option>
+                        <option value="畫出平靜(圓圈繪畫)">畫出平靜(圓圈繪畫)</option>
+                        <option value="新興運動">新興運動</option>
+                        <option value="劃出未來">劃出未來</option>
+                        <option value="創出你想人生">創出你想人生</option>
+                        <option value="認識自我">認識自我</option>
+                        <option value="多元智能 : 反轉生命教育館">多元智能 : 反轉生命教育館</option>
+                        <option value="我們這一家">我們這一家</option>
+                        <option value="孝親工作坊">孝親工作坊</option>
+                        <option value="&quot;觸&quot;得到的愛 – 親子按摩">&quot;觸&quot;得到的愛 – 親子按摩</option>
+                        <option value="親子旅行日">親子旅行日</option>
+                        <option value="尋找友情的足跡">尋找友情的足跡</option>
+                        <option value="桌遊一聚">桌遊一聚</option>
+                        <option value="生命領袖">生命領袖</option>
+                        <option value="快樂團隊">快樂團隊</option>
+                        <option value="欣賞與尊重">欣賞與尊重</option>
+                        <option value="選擇與為自己負責任">選擇與為自己負責任</option>
+                        <option value="接納與關懷">接納與關懷</option>
+                        <option value="守法小先鋒">守法小先鋒</option>
+                        <option value="正向品德">正向品德</option>
+                        <option value="義工培訓">義工培訓</option>
+                        <option value="方舟遊蹤－為你的遊歷增添樂趣">方舟遊蹤－為你的遊歷增添樂趣</option>
+                        <option value="馬灣名偵探 (包含戶外)">馬灣名偵探 (包含戶外)</option>
+                        <option value="吾生吾死 生死探索之旅">吾生吾死 生死探索之旅</option>
+                        <option value="離別中體驗愛">離別中體驗愛</option>
+                        <option value="重遊人生路">重遊人生路</option>
+                        <option value="對外培訓及支援服務主題講座">對外培訓及支援服務主題講座</option>
+                        <option value="對外培訓及支援服務工作坊">對外培訓及支援服務工作坊</option>
+                        <option value="企業培訓 及 度身訂造培訓">企業培訓 及 度身訂造培訓</option>
+                    </select>
+                </div>
+                <div class="col-6 mb-3 d-flex align-items-end">
+                    <div class="form-check" style="padding-left: unset">
+                        <label class="form-check-label" for="needMeals">
+                            是否需要膳食
+                        </label>
+                        <input class="form-check-input" type="checkbox" value="" name="needMeals" id="needMeals" style="float: unset;margin-left: unset">
+                    </div>
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="language" class="form-label">語言 <span class="text-danger">*</span></label>
+                    <select class="form-select"  id="language" name="language" required>
+                        <option value="1">中文</option>
+                        <option value="1.3">英文</option>
+                        <option value="1.3">普通話</option>
                     </select>
                 </div>
                 <div class="col-6 mb-3">
-                    <label for="amount" class="form-label">需要午餐的數量 <span class="text-danger">*</span></label>
-                    <input type="number" class="form-control" id="amount" name="amount" placeholder="" required>
+                    <label for="mealOptions" class="form-label">膳食選擇 <span class="text-danger">*</span></label>
+                    <select class="form-select"  id="mealOptions" name="mealOptions" required disabled>
+                        <option value="2100">中式圍餐 $2100/每份 (12人份量)</option>
+                        <option value="74">飯盒餐 連一包紙飽飲品 $74/每份 (1人份量)</option>
+                        <option value="260">自助餐 $260/每份 (1人份) (最少50人起)</option>
+                    </select>
                 </div>
-                <div class="col-6 mb-3">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="tickets" name="tickets" required>
-                        <label class="form-check-label" for="tickets">
+                <div class="col-6 mb-3 d-flex align-items-end">
+                    <div class="form-check" style="padding-left: unset">
+                        <label class="form-check-label" for="ticketsMawan">
                             是否需要馬灣的門票
                         </label>
+                        <input class="form-check-input" type="checkbox" value="" name="ticketsMawan" id="ticketsMawan" style="float: unset;margin-left: unset">
                     </div>
                 </div>
                 <div class="col-6 mb-3">
-                    <label for="number_of_tickets" class="form-label">需要門票的數量 <span class="text-danger">*</span></label>
-                    <input type="number" class="form-control" id="number_of_tickets" name="number_of_tickets" placeholder="" required>
+                    <label for="numOfMeals" class="form-label">需要膳食的數量 <span class="text-danger">*</span></label>
+                    <input type="number" class="form-control" placeholder="" name="numOfMeals" id="numOfMeals" required>
                 </div>
-                <div class="col-12 mb-3">
+                <div class="col-6 mb-3">
+                    <label for="numOfTickets" class="form-label">需要門票的數量 <span class="text-danger">*</span></label>
+                    <input type="number" class="form-control" name="numOfTickets" id="numOfTickets" placeholder="" required disabled>
+                </div>
+                <div class="col-12 mb-3 text-center">
                     <button type="submit" class="btn btn-dark ps-5 pe-5" name="dataSubmit">Submit</button>
                 </div>
             </div>
@@ -152,6 +225,77 @@
 </footer>
 <!-- Footer End -->
 
+<!-- Modal -->
+<div class="modal fade" id="meals" tabindex="-1" aria-labelledby="mealsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="mealsModalLabel">Message Box</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                所有膳食安排須在活動前十個工作天確認
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="restrictedArea" tabindex="-1" aria-labelledby="mealsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="restrictedAreaModalLabel">Message Box</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                請前往以下網址下載相關申請表格。link of our download page
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="activity" tabindex="-1" aria-labelledby="activityModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="activityModalLabel">Message Box</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                吾生吾死 生死探索之旅只限中四或以上的中學生以及大專生參與
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="activitySecond" tabindex="-1" aria-labelledby="activityModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="activitySecondModalLabel">Message Box</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                請致電至3411 8881 或電郵至aleh@noahsark.com.hk 以獲取客製化的報價
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="timeModal" tabindex="-1" aria-labelledby="activityModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="timeModalLabel">Message Box</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                如乘坐旅遊巴於9點前進入馬灣，則必須申請禁區紙
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- JS Start -->
 <script src="assets/vendor/Bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="assets/vendor/jQuery/jquery-3.6.4.min.js"></script>
@@ -159,5 +303,81 @@
 <script src="assets/vendor/uikit/js/uikit.min.js"></script>
 <script src="assets/vendor/uikit/js/uikit-icons.min.js"></script>
 <script src="assets/js/main.js"></script>
+
+<script>
+    document.getElementById('needMeals').addEventListener('change', function () {
+        if (this.checked) {
+            $('#meals').modal('show');
+            $('#mealOptions').prop('disabled', false);
+        } else {
+            $('#meals').modal('hide');
+            $('#mealOptions').prop('disabled', true);
+        }
+    });
+
+    document.getElementById('ticketsMawan').addEventListener('change', function () {
+        if (this.checked) {
+            $('#numOfTickets').prop('disabled', false);
+        } else {
+            $('#numOfTickets').prop('disabled', true);
+        }
+    });
+
+    document.getElementById('activitySelection').addEventListener('change', function () {
+        if (this.value=='吾生吾死 生死探索之旅') {
+            $('#activity').modal('show');
+        } else {
+            $('#activity').modal('hide');
+        }
+    });
+
+    document.getElementById('restrictedAreaPaper').addEventListener('change', function () {
+        if (this.checked) {
+            $('#restrictedArea').modal('show');
+        } else {
+            $('#restrictedArea').modal('hide');
+        }
+    });
+
+    document.getElementById('activitySelection').addEventListener('change', function () {
+        if (this.value=='吾生吾死 生死探索之旅') {
+            $('#activitySecond').modal('hide');
+            $('#activity').modal('show');
+        }else if (this.value=='對外培訓及支援服務主題講座'||this.value=='對外培訓及支援服務工作坊'||this.value=='企業培訓 及 度身訂造培訓') {
+            $('#activity').modal('hide');
+            $('#activitySecond').modal('show');
+        } else {
+            $('#activity').modal('hide');
+            $('#activitySecond').modal('hide');
+        }
+    });
+
+    function checkHongKongTime() {
+        // Get current UTC time
+        const now = new Date();
+
+        // Convert to UTC time (milliseconds)
+        const utcTime = now.getTime() + (now.getTimezoneOffset() * 60000);
+
+        // Hong Kong is UTC+8
+        const offset = 8 * 60 * 60000;
+
+        // Get Hong Kong time
+        const hongKongTime = new Date(utcTime + offset);
+
+        // Get hours and minutes
+        const hours = hongKongTime.getHours();
+        const minutes = hongKongTime.getMinutes();
+
+        // Check if the current time is between 7:30 AM and 9:00 AM
+        if ((hours === 7 && minutes >= 30) || (hours === 8) || (hours === 9 && minutes === 0)) {
+            $('#timeModal').modal('show');
+        }
+    }
+
+    // Check the time when the page loads
+    window.onload = checkHongKongTime;
+
+</script>
 </body>
 </html>
