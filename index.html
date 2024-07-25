@@ -226,6 +226,20 @@
 <!-- Footer End -->
 
 <!-- Modal -->
+<div class="modal fade" id="warningModal" tabindex="-1" aria-labelledby="warningModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="warningModalLabel">Message Box</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                如乘坐旅遊巴於9點前進入馬灣，則必須申請禁區紙
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="meals" tabindex="-1" aria-labelledby="mealsModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -305,6 +319,19 @@
 <script src="assets/js/main.js"></script>
 
 <script>
+    document.getElementById('eventtime').addEventListener('change', function() {
+        const timeValue = this.value;
+        const [hours, minutes] = timeValue.split(':').map(Number);
+        const totalMinutes = hours * 60 + minutes;
+        const startTime = 7 * 60 + 30; // 7:30 AM in minutes
+        const endTime = 9 * 60; // 9:00 AM in minutes
+
+        if (totalMinutes >= startTime && totalMinutes <= endTime) {
+            const warningModal = new bootstrap.Modal(document.getElementById('warningModal'));
+            warningModal.show();
+        }
+    });
+
     document.getElementById('needMeals').addEventListener('change', function () {
         if (this.checked) {
             $('#meals').modal('show');

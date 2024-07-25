@@ -195,9 +195,32 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td><?php echo $activitySelection; ?></td>
+                            <td><?php
+                                if($program_cost<=0){
+                                    ?>
+                                    此活動內容不適合閣下之選取對象，如需了解更多，請致電至3411 8881或<br/>
+                                    電郵至aleh@noahsark.com.hk查詢<br/>
+                                    This program is not recommended for your selected participants, kindly contact<br/>
+                                    us at 34118881 or via email aleh@noahsark.com.hk for any further support
+                                    <?php
+                                }
+                                else{
+                                    echo $activitySelection;
+                                }
+                                ?></td>
                             <td>
-                                $<?php echo $program_cost + $worker_cost + $food_cost + $ticket_cost; ?>
+                                <?php
+                                if($program_cost<=0){
+                                ?>
+                                    N/A
+                                    <?php
+                                }
+                                else{
+                                   ?>
+                                    $<?php echo $program_cost + $worker_cost + $food_cost + $ticket_cost; ?>
+                                <?php
+                                }
+                                ?>
                             </td>
                         </tr>
                         </tbody>
