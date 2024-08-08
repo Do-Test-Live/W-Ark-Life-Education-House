@@ -14,7 +14,7 @@ $db_handle = new DBController();
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Apply - Ark Life Education House</title>
+    <title>Registration - Ark Life Education House</title>
 
     <?php require_once 'include/css.php'; ?>
 
@@ -47,41 +47,48 @@ $db_handle = new DBController();
                         <h6 class="m-0 font-weight-bold text-primary">Registration Data</h6>
                     </div>
                     <div class="card-body">
-                        <div class="text-center mb-4">
-                            <a href="report.php?report=1" class="btn btn-primary">Export Data</a>
-                        </div>
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                 <tr>
                                     <th>SL</th>
+                                    <th>Organization</th>
                                     <th>Name</th>
+                                    <th>Telephone</th>
+                                    <th>Fax</th>
                                     <th>Email</th>
-                                    <th>NGT NFT reserve</th>
-                                    <th>Contact No</th>
+                                    <th>Event Date</th>
+                                    <th>View</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
                                 <tr>
                                     <th>SL</th>
+                                    <th>Organization</th>
                                     <th>Name</th>
+                                    <th>Telephone</th>
+                                    <th>Fax</th>
                                     <th>Email</th>
-                                    <th>NGT NFT reserve</th>
-                                    <th>Contact No</th>
+                                    <th>Event Date</th>
+                                    <th>View</th>
                                 </tr>
                                 </tfoot>
                                 <tbody>
                                 <?php
-                                $data = $db_handle->runQuery("SELECT * FROM registration order by id desc");
-                                $row_count = $db_handle->numRows("SELECT * FROM registration order by id desc");
+                                $query = "SELECT * FROM ark_info order by aid desc";
+                                $data = $db_handle->runQuery($query);
+                                $row_count = $db_handle->numRows($query);
                                 for ($i = 0; $i < $row_count; $i++) {
                                     ?>
                                     <tr>
                                         <td><?php echo $i + 1; ?></td>
+                                        <td><?php echo $data[$i]["organization"]; ?></td>
                                         <td><?php echo $data[$i]["name"]; ?></td>
+                                        <td><?php echo $data[$i]["telephone"]; ?></td>
+                                        <td><?php echo $data[$i]["fax"]; ?></td>
                                         <td><?php echo $data[$i]["email"]; ?></td>
-                                        <td><?php echo $data[$i]["reserve"]; ?></td>
-                                        <td><?php echo $data[$i]["phone"]; ?></td>
+                                        <td><?php echo $data[$i]["event_date"]; ?></td>
+                                        <td><a href="../downloadPdf.php?aid=<?php echo $data[$i]["aid"] ?>" class="btn btn-info">View PDF</a></td>
                                     </tr>
                                 <?php } ?>
                                 </tbody>

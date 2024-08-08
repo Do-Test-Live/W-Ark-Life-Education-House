@@ -1,3 +1,7 @@
+<?php
+include('include/dbController.php');
+$db_handle = new DBController();
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -146,6 +150,12 @@
         $ticket_cost = 125 * $numOfTickets;
 
     }
+
+    $query = "SELECT * FROM settings";
+    $data = $db_handle->runQuery($query);
+
+    $info=$data[0]['details'];
+    $bottom_info=$data[1]['details'];
     ?>
 </head>
 <body>
@@ -171,17 +181,29 @@
                     傳真︰ <?php echo $fax; ?><br/>
                     電郵︰ <?php echo $email; ?><br/>
                     <br/>
-                    活動日期︰ <?php echo date('d/m/Y', strtotime($event_date)); ?><br/>
+                    活動日期︰ <?php
+                    echo date('d/m/Y', strtotime($event_date));
+                    $new_event_date=date('d/m/Y', strtotime($event_date));
+                    ?><br/>
                     對象︰<?php echo $object; ?>
                 </p>
             </div>
             <div class="col-lg-6 col-6 d-flex justify-content-end align-items-end">
                 <p>
-                    報價單編號︰ <?php echo rand(1000, 9999); ?><br/>
+                    報價單編號︰ <?php
+                    $query = "SELECT * FROM ark_info ORDER BY aid DESC LIMIT 1";
+                    $data = $db_handle->runQuery($query);
+
+                    // Increment the 'aid' value by 1
+                    $new_aid = $data[0]['aid'] + 1;
+
+                    // Format the new 'aid' value with leading zeros to make it 5 digits long
+                    $formatted_aid = sprintf('%05d', $new_aid);
+
+                    echo $formatted_aid;
+                    ?><br/>
                     報價單日期︰ <?php echo date('d/m/Y'); ?><br/>
-                    製單員︰ Kasey So<br/>
-                    電話︰ 34118666<br/>
-                    電郵︰ cy.so@sjs.org.hk<br/>
+                    <?php echo $info; ?>
                 </p>
             </div>
         </div>
@@ -198,7 +220,12 @@
                         <tbody>
                         <tr>
                             <td><?php
+                                $program_info_1='';
                                 if($program_cost<=0){
+                                    $program_info_1="此活動內容不適合閣下之選取對象，如需了解更多，請致電至3411 8881或<br/>
+                                    電郵至aleh@noahsark.com.hk查詢<br/>
+                                    This program is not recommended for your selected participants, kindly contact<br/>
+                                    us at 34118881 or via email aleh@noahsark.com.hk for any further support";
                                     ?>
                                     此活動內容不適合閣下之選取對象，如需了解更多，請致電至3411 8881或<br/>
                                     電郵至aleh@noahsark.com.hk查詢<br/>
@@ -208,16 +235,20 @@
                                 }
                                 else{
                                     echo $activitySelection;
+                                    $program_info_1=$activitySelection;
                                 }
                                 ?></td>
                             <td>
                                 <?php
+                                $program_info_2='';
                                 if($program_cost<=0){
+                                    $program_info_2='N/A';
                                 ?>
                                     N/A
                                     <?php
                                 }
                                 else{
+                                    $program_info_2='$'.$program_cost + $worker_cost + $food_cost + $ticket_cost;
                                    ?>
                                     $<?php echo $program_cost + $worker_cost + $food_cost + $ticket_cost; ?>
                                 <?php
@@ -231,13 +262,15 @@
             </div>
             <div class="col-12">
                 <p class="mt-2">
-                    備註:<br/>
-                    1. 報價有效期至 <?php
-                    echo date('d/m/Y', strtotime('+7 days'));
+                    <?php
+                    $date_1=date('d/m/Y', strtotime('+7 days'));
+
+                    // Replace placeholder with actual date
+                    $replaced_text = str_replace("[date]", $date_1, $bottom_info);
+
+                    // Output the text
+                    echo $replaced_text;
                     ?>
-                    <br/>
-                    2. 如確認參觀活動,請在下方簽署或蓋印,連同活動申請表傳真或電郵至本館跟進<br/>
-                    3. 每15位參加者豁免1位工作人員,額外工作人員收費每位$190
                 </p>
                 <p class="mt-5">
                     付款方法︰<br/>
@@ -256,7 +289,10 @@
                     <p>團體簽名或印章</p>
                     <img src="assets/images/seal.png" alt="" class="img-fluid"/>
                     <p>___________________________</p>
-                    <p>日期︰ <?php echo date('d/m/Y'); ?></p>
+                    <p>日期︰ <?php
+                        echo date('d/m/Y');
+                        $date_2=date('d/m/Y');
+                        ?></p>
                 </div>
             </div>
             <div class="col-6 d-flex justify-content-center align-items-center mt-4">
@@ -304,6 +340,11 @@
         integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+
+<?php
+    $query="INSERT INTO `ark_info`(`organization`, `name`, `telephone`, `fax`, `email`, `event_date`,`object`, `program_info_1`, `program_info_2`, `date_1`, `date_2`) VALUES ('$organization','$name','$telephone','$fax','$email','$new_event_date','$object','$program_info_1','$program_info_2','$date_1','$date_2');";
+    $insert=$db_handle->insertQuery($query);
+?>
 <script>
 
     function getPDF() {
