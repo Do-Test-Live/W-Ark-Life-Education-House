@@ -55,7 +55,7 @@
         $object = implode(", ", $_POST['object']);
         $newobject = explode(", ", $object);
 
-
+        $numofSubKin=$numofSubPrimary=$numofSubMiddle=$collegeStudentSub=$adultSub=$elderSub=$disabledPersonSub=0;
         $restrictedAreaPaper = $_POST['restrictedAreaPaper'];
         $eventtime = $_POST['eventtime'];
         $kinderGardenChild = $_POST['kinderGardenChild'];
@@ -133,7 +133,9 @@
             }
         }
 
-        $worker_cost = 190 * $numOfStaff;
+        $numOfWorker=$numofSubKin+$numofSubPrimary+$numofSubMiddle+$collegeStudentSub+$adultSub+$elderSub+$disabledPersonSub;
+
+        $worker_cost = round(190 * ($numOfStaff-($numOfWorker/15)));
 
         if ($worker_cost < 0) {
             $worker_cost = 0;

@@ -327,8 +327,7 @@
         const endTime = 9 * 60; // 9:00 AM in minutes
 
         if (totalMinutes >= startTime && totalMinutes <= endTime) {
-            const warningModal = new bootstrap.Modal(document.getElementById('warningModal'));
-            warningModal.show();
+            $('#warningModal').modal('show');
         }
     });
 
